@@ -1,0 +1,25 @@
+.card-image {
+    background-size: cover;
+    background-position: center;
+  }
+
+  .card-image {
+    transition: transform 0.3s ease;
+  }
+  
+  .card-image:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
+
+  .container1{
+    background: linear-gradient(to bottom, #120812, #1a9470);
+  }
+
+  .home{
+    background: linear-gradient(to bottom,#120812, #1a9470);
+  }
+
+  .align{
+    margin-left: 6%;
+  }
