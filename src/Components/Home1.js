@@ -8,7 +8,7 @@ export const Home1 = () => {
   return (
     <div>
       <div>
-      <NavPat></NavPat>
+      {/* <NavPat></NavPat> */}
       <Blog></Blog>
       </div>
     </div>

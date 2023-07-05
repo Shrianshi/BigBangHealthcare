@@ -1,186 +1,75 @@
-import React, { useEffect, useState } from "react";
-import { Nav } from "./Nav";
-import { PatientById } from "./PatientById";
-import { DoctorForm } from "./DoctorDataAdd";
+import React, { useState } from "react";
 
+export const DoctorForm1 = () => {
+  const [name, setName] = useState("");
+  const [specialization, setSpecialization] = useState("");
+  const [status, setStatus] = useState(true);
 
-export const DoctorView = () => {
-  const [Doctors, setDoctors] = useState([]);
+  const handleSubmit = async (event) => {
+    event.preventDefault();
 
-  useEffect(() => {
-    fetchDoctor();
-  }, []);
-
-  const fetchDoctor = async () => {
     try {
+      const doctorData = {
+        name: name,
+        specialization:specialization,
+        status: status
+      };
+
       let jwttoken = sessionStorage.getItem("jwttoken");
       const response = await fetch("https://localhost:7127/api/Doctor", {
+        method: "POST",
         headers: {
+          "Content-Type": "application/json",
           Authorization: "bearer " + jwttoken,
         },
+        body: JSON.stringify(doctorData),
       });
-      if (response.ok) {
-        const data = await response.json();
-        setDoctors(data);
-      } else {
-        console.error("Error fetching doctors:", response.statusText);
-        window.alert("Unauthorized");
-      }
-    } catch (error) {
-      console.error("Error fetching doctors:", error);
-    }
-  };
-
-  // Update
-  const updateDoctor = async (Id, updatedData) => {
-    try {
-      let jwttoken = sessionStorage.getItem("jwttoken");
-      const response = await fetch(
-        `https://localhost:7127/api/Doctor/${Id}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: "Bearer " + jwttoken,
-          },
-          body: JSON.stringify(updatedData),
-        }
-      );
 
       if (response.ok) {
-        console.log("Doctor updated successfully");
-        fetchDoctor();
+        console.log("Doctor added successfully");
+        // Optionally, you can trigger a parent component's function to refresh the teacher list
+        // Example: props.fetchTeachers();
       } else {
-        console.error("Error updating doctor:", response.statusText);
-        window.alert("Failed to update doctor");
+        console.error("Error adding doctor:", response.statusText);
+        window.alert("Failed to add doctor");
       }
     } catch (error) {
-      console.error("Error updating doctor:", error);
+      console.error("Error adding doctor:", error);
     }
+
+    // Reset the form fields
+    setName("");
+    setSpecialization("");
+    setStatus("");
   };
-
-  // Delete
-  const deleteDoctor = async (Id) => {
-    try {
-      let jwttoken = sessionStorage.getItem("jwttoken");
-      const response = await fetch(
-        `https://localhost:7127/api/Doctor/${Id}`,
-        {
-          method: "DELETE",
-          headers: {
-            Authorization: "Bearer " + jwttoken,
-          },
-        }
-      );
-
-      if (response.ok) {
-        console.log("Doctor deleted successfully");
-        fetchDoctor();
-      } else {
-        console.error("Error deleting doctor:", response.statusText);
-        window.alert("Failed to delete doctor");
-      }
-    } catch (error) {
-      console.error("Error deleting doctor:", error);
-    }
-  };
-
-  // Add New
 
   return (
     <div>
-      <Nav/>
-      <h1>Doctor List</h1>
-      <button
-        className="btn btn-primary"
-        style={{ float: "right" }}
-        data-bs-toggle="modal"
-        data-bs-target="#exampleModal"
-      >
-        Add New
-      </button>
-      <div
-        class="modal fade"
-        id="exampleModal"
-        tabindex="-1"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">
-                Add Doctor
-              </h1>
-              <DoctorForm></DoctorForm>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div class="modal-footer">
-              <button
-                type="button"
-                class="btn btn-secondary"
-                data-bs-dismiss="modal"
-              >
-                Close
-              </button>
-              <button type="submit" class="btn btn-primary">
-                Save changes
-              </button>
-            </div>
-          </div>
+      <h2>Add Doctor</h2>
+      <form onSubmit={handleSubmit}>
+        <div className="form-group">
+          <input
+            type="text" className="form-control" placeholder="Enter doctor name"
+            value={name}
+            onChange={(event) => setName(event.target.value)}
+          />
         </div>
-      </div>
-
-      <table className="table table-bordered">
-        <thead>
-          <tr>
-            <td>Name</td>
-            <td>Specialization</td>
-            <td>Status</td>
-            <td>Delete</td>
-            <td>Action</td>
-          </tr>
-          {Doctor.map((Doctor) => (
-            <tr key={Doctor.Id}>
-              <td>{Doctor.Name}</td>
-              <td>{Doctor.Specialization}</td>
-              <td>{Doctor.Status}</td>
-              <td>
-                <button
-                  className="btn btn-danger"
-                  onClick={() => deleteDoctor(Doctor.Id)}
-                >
-                  Delete
-                </button>
-              </td>
-              <td>
-                <button
-                  className={`btn btn-${
-                    Doctor.Status === "Active" ? "success" : "warning"
-                  }`}
-                  onClick={() =>
-                    updateDoctor(Doctor.Id, {
-                      ...Doctor,
-                      Name: Doctor.Name,
-                      Specialization: Doctor.Specialization,
-                      Status:
-                      Doctor.Status === "Active" ? "Inactive" : "Active",
-                    })
-                  }
-                >
-                  {Doctor.Status}
-                </button>
-              </td>
-            </tr>
-          ))}
-        </thead>
-        <tbody></tbody>
-      </table>
+        <div className="form-group">
+          <input
+            type="text" className="form-control" placeholder="Enter doctor specialization"
+            value={specialization}
+            onChange={(event) => setSpecialization(event.target.value)}
+          />
+        </div>
+        <div className="form-group">
+          <input
+            type="text" className="form-control" placeholder="Enter doctor status"
+            value={status}
+            onChange={(event) => setStatus(event.target.value)}
+          />
+        </div>
+        <button type="submit" className="btn btn-success">Add Teacher</button>
+      </form>
     </div>
   );
 };

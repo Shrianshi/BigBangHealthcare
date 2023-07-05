@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Nav } from "./Nav";
+import NavDoc from "./NavDoc";
 import { PatientById } from "./PatientById";
 import { PatientForm } from "./PatientForm";
 import Footer from "./Footer";
 
-export const PatientDataView = () => {
+const PatData = () => {
   const [patients, setPatients] = useState([]);
 
   useEffect(() => {
@@ -61,19 +61,19 @@ export const PatientDataView = () => {
 
   return (
     <div>
-    <Nav></Nav>
+    <NavDoc></NavDoc>
     
       <h2>Patients List</h2>
 
-      <button
+      {/* <button
         className="btn btn-primary"
         style={{ float: "right" }}
         data-bs-toggle="modal"
         data-bs-target="#exampleModal"
       >
         Add New
-      </button>
-      <div
+      </button> */}
+      {/* <div
         class="modal fade"
         id="exampleModal"
         tabindex="-1"
@@ -83,9 +83,9 @@ export const PatientDataView = () => {
         <div class="modal-dialog">
           <div class="modal-content">
             <div class="modal-header">
-              {/* <h1 class="modal-title fs-5" id="exampleModalLabel">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">
                 Add Patient
-              </h1> */}
+              </h1>
               <PatientForm></PatientForm>
               <button
                 type="button"
@@ -94,7 +94,7 @@ export const PatientDataView = () => {
                 aria-label="Close"
               ></button>
             </div>
-            {/* <div class="modal-footer">
+            <div class="modal-footer">
               <button
                 type="button"
                 class="btn btn-secondary"
@@ -105,10 +105,10 @@ export const PatientDataView = () => {
               <button type="submit" class="btn btn-primary">
                 Save changes
               </button>
-            </div> */}
+            </div>
           </div>
         </div>
-      </div>
+      </div> */}
 
       <table className="table table-bordered table-dark">
         <thead>
@@ -116,21 +116,13 @@ export const PatientDataView = () => {
             <td>Name</td>
             <td>Age</td>
             <td>Gender</td>
-            <td>Delete</td>
+            
           </tr>
           {patients.map((patient) => (
             <tr key={patient.id}>
               <td>{patient.name}</td>
               <td>{patient.age}</td>
               <td>{patient.gender}</td>
-              <td>
-                <button
-                  className="btn btn-danger"
-                  onClick={() => deletePatient(patient.id)}
-                >
-                  Delete
-                </button>
-              </td>
             </tr>
           ))}
         </thead>
@@ -141,4 +133,4 @@ export const PatientDataView = () => {
   );
 };
 
-export default PatientById;
+export default PatData;

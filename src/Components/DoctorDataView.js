@@ -2,11 +2,14 @@ import React, { useEffect, useState } from "react";
 import { Nav } from "./Nav";
 import { PatientById } from "./PatientById";
 import { DoctorForm } from "./DoctorDataAdd";
+import { DoctorForm1 } from "./DoctorForm";
 import Footer from "./Footer";
 
 
 const DoctorDataView = () => {
     const [Doctors, setDoctors] = useState([]);
+    const [clickedButtonId, setClickedButtonId] = useState(null);
+    const [clickedButtonStatus, setClickedButtonStatus] = useState(null);
 
     useEffect(() => {
         fetchDoctors();
@@ -23,6 +26,7 @@ const DoctorDataView = () => {
             if (response.ok) {
                 const data = await response.json();
                 setDoctors(data);
+
             } else {
                 console.error("Error fetching doctors:", response.statusText);
                 window.alert("Unauthorized");
@@ -51,6 +55,8 @@ const DoctorDataView = () => {
             if (response.ok) {
                 console.log("Doctor updated successfully");
                 fetchDoctors();
+                setClickedButtonId(Id);
+                setClickedButtonStatus(!updatedData.status);
             } else {
                 console.error("Error updating doctor:", response.statusText);
                 window.alert("Failed to update doctor");
@@ -108,10 +114,10 @@ const DoctorDataView = () => {
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">
+                            {/* <h1 class="modal-title fs-5" id="exampleModalLabel">
                                 Add Doctor
-                            </h1>
-                            <DoctorForm></DoctorForm>
+                            </h1> */}
+                            <DoctorForm1></DoctorForm1>
                             <button
                                 type="button"
                                 class="btn-close"
@@ -119,7 +125,7 @@ const DoctorDataView = () => {
                                 aria-label="Close"
                             ></button>
                         </div>
-                        <div class="modal-footer">
+                        {/* <div class="modal-footer">
                             <button
                                 type="button"
                                 class="btn btn-secondary"
@@ -130,7 +136,7 @@ const DoctorDataView = () => {
                             <button type="submit" class="btn btn-primary">
                                 Save changes
                             </button>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>
@@ -156,7 +162,7 @@ const DoctorDataView = () => {
                                 </button>
                             </td>
                             <td>
-                                <button
+                                {/* <button
                                     className={`btn btn-${Doctor.status === true ? "success" : "warning"
                                         }`}
                                     onClick={() =>
@@ -170,7 +176,22 @@ const DoctorDataView = () => {
                                     }
                                 >
                                     Status
+                                </button> */}
+
+                                <button
+                                    className={`btn btn-${clickedButtonId === Doctor.id && Doctor.status ? "success" : "warning"}`}
+                                    onClick={() =>
+                                        updateDoctors(Doctor.id, {
+                                            ...Doctor,
+                                            name: Doctor.name,
+                                            specialization: Doctor.specialization,
+                                            status: !Doctor.status, // Toggle the status
+                                        })
+                                    }
+                                >
+                                    {clickedButtonId === Doctor.id && Doctor.status ? "Active" : "Inactive"}
                                 </button>
+
                             </td>
                         </tr>
                     ))}

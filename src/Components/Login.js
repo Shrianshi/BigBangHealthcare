@@ -103,7 +103,7 @@ export const Login = () => {
       <ToastContainer />
       <div className="offset-lg-3 col-lg-6" style={{ marginTop: "100px" }}>
         <form onSubmit={ProceedLoginusingAPI} className="container">
-          <div className="card">
+          <div className="card  bg-success-subtle">
             <div className="card-header">
               <h2>Login</h2>
             </div>

@@ -12,6 +12,10 @@ import { Login } from "./Components/Login";
 import Register from "./Components/Register";
 import { Doctor } from "./Components/Doctor";
 import Blog from "./Components/Blog";
+import DocData from "./Components/DocData";
+import PatData from "./Components/PatData";
+
+
 
 import { ToastContainer } from "react-toastify";
 
@@ -29,6 +33,9 @@ function App() {
         <Route path="/doctor" element={<DoctorDataView />} />
         <Route path="/register" element={<Register />} />
         <Route path="/blogs" element={<Blog />} />
+        <Route path="/docdata" element={<DocData />} />
+        <Route path="/patdata" element={<PatData />} />
+
       </Routes>
     </BrowserRouter>
     

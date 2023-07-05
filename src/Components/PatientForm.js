@@ -13,15 +13,15 @@ export const PatientForm = () => {
 
     try {
       const studentData = {
-        Name: Name,
-        Age: Age,
-        Gender: Gender,
-        City:City,
-        State:State
+        name: Name,
+        age: Age,
+        gender: Gender,
+        city:City,
+        state:State
       };
 
       let jwttoken = sessionStorage.getItem("jwttoken");
-      const response = await fetch("https://localhost:7127/api/Patients", {
+      const response = await fetch("https://localhost:7127/api/Patient", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -37,7 +37,7 @@ export const PatientForm = () => {
         window.alert("Failed to add Patient");
       }
     } catch (error) {
-      console.error("Error adding Doctor:", error);
+      console.error("Error adding Patient:", error);
     }
 
     // Reset the form fields
@@ -52,48 +52,43 @@ export const PatientForm = () => {
     <div>
       <h2>Add Patient</h2>
       <form onSubmit={handleSubmit}>
-        <div>
-          <label>Name:</label>
-          <input
+        <div className="form-group">
+          <input className="form-control" placeholder="Enter name of patient"
             type="text"
             value={Name}
             onChange={(event) => setName(event.target.value)}
           />
         </div>
-        <div>
-          <label>Age:</label>
-          <input
+        <div className="form-group">
+          <input className="form-control" placeholder="Enter age of patient"
             type="text"
             value={Age}
             onChange={(event) => setAge(event.target.value)}
           />
         </div>
-        <div>
-          <label>Gender:</label>
-          <input
+        <div className="form-group">
+          <input className="form-control" placeholder="Enter gender of patient"
             type="text"
             value={Gender}
             onChange={(event) => setGender(event.target.value)}
           />
         </div>
-        <div>
-          <label>Phone</label>
-          <input
+        <div className="form-group">
+          <input className="form-control" placeholder="Enter city of patient"
             type="text"
             value={City}
             onChange={(event) => setCity(event.target.value)}
           />
         </div>
-        <div>
-          <label>Phone</label>
-          <input
+        <div className="form-group">
+          <input className="form-control" placeholder="Enter State of patient"
             type="text"
             value={State}
             onChange={(event) => setState(event.target.value)}
           />
         </div>
         <div>
-            <button type="submit">Add Patient</button>
+            <button type="submit" className="btn btn-success">Add Patient</button>
         </div>
       </form>
     </div>

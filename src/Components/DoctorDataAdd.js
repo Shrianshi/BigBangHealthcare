@@ -10,9 +10,9 @@ export const DoctorForm = () => {
 
     try {
       const doctorData = {
-        Name: Name,
-        Specialization:Specialization,
-        Status: "Inactive",
+        name: Name,
+        specialization:Specialization,
+        status: "Inactive",
       };
 
       let jwttoken = sessionStorage.getItem("jwttoken");
