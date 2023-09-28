@@ -101,36 +101,36 @@ export const Login = () => {
   return (
     <div className="row">
       <ToastContainer />
-      <div className="offset-lg-3 col-lg-6" style={{ marginTop: "100px" }}>
+      <div className="offset-lg-3 col-lg-6 mb-5" style={{ marginTop: "100px" }}>
         <form onSubmit={ProceedLoginusingAPI} className="container">
-          <div className="card  bg-success-subtle">
+          <div className="card  bg-success-subtle shadow-lg">
             <div className="card-header">
-              <h2>Login</h2>
+              <h2>Login 🔐</h2>
             </div>
             <div className="card-body">
               <div className="form-group">
-                <label>
+                {/* <label>
                   User Name <span className="errmsg">*</span>
-                </label>
+                </label> */}
                 <input
                   value={username}
                   onChange={(e) => usernameupdate(e.target.value)}
-                  className="form-control"
+                  className="form-control" placeholder="Enter username here"
                 ></input>
               </div>
               <div className="form-group">
-                <label>
+                {/* <label>
                   Password <span className="errmsg">*</span>
-                </label>
+                </label> */}
                 <input
                   type="password"
                   value={password}
                   onChange={(e) => passwordupdate(e.target.value)}
-                  className="form-control"
+                  className="form-control" placeholder="Enter password here"
                 ></input>
               </div>
             </div>
-            <div className="card-footer">
+            <div className="card-footer btn-group">
               <button type="submit" className="btn btn-primary">
                 Login
               </button>

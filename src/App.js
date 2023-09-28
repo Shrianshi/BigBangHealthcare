@@ -14,6 +14,7 @@ import { Doctor } from "./Components/Doctor";
 import Blog from "./Components/Blog";
 import DocData from "./Components/DocData";
 import PatData from "./Components/PatData";
+import BlogDoc from "./Components/BlogDoc";
 
 
 
@@ -35,6 +36,7 @@ function App() {
         <Route path="/blogs" element={<Blog />} />
         <Route path="/docdata" element={<DocData />} />
         <Route path="/patdata" element={<PatData />} />
+        <Route path="/blogdoc" element={<BlogDoc />} />
 
       </Routes>
     </BrowserRouter>

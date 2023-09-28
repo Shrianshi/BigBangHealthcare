@@ -68,7 +68,7 @@ export const DoctorForm1 = () => {
             onChange={(event) => setStatus(event.target.value)}
           />
         </div>
-        <button type="submit" className="btn btn-success">Add Teacher</button>
+        <button type="submit" className="btn btn-success">Add Doctor</button>
       </form>
     </div>
   );

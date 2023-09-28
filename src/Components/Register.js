@@ -71,9 +71,9 @@ const Register = () => {
     <div className="row">
       <div className="offset-lg-3 col-lg-6" style={{ marginTop: "100px" }}>
         <form onSubmit={Register} className="container">
-          <div className="card">
+          <div className="card bg-primary-subtle shadow-lg">
             <div className="card-header">
-              <h2>Register</h2>
+              <h2>Register 🗝️</h2>
             </div>
             <div className="card-body">
               <div className="form-group">
@@ -118,11 +118,11 @@ const Register = () => {
               </div>
 
             </div>
-            <div className="card-footer">
+            <div className="card-footer btn-group">
               <button type="submit" className="btn btn-primary">
-                submit
+                Submit
               </button>
-              <button className=""><Link class="nav-link active" aria-current="page" to="/">Logout</Link></button>
+              <button className="btn btn-success"><Link class="nav-link active" aria-current="page" to="/">Login</Link></button>
             </div>
           </div>
         </form>

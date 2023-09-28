@@ -4,12 +4,13 @@ import doctorv2 from '../videos/doctorv2.mp4'
 import doctorv3 from '../videos/doctorv3.mp4'
 import doctorv4 from '../videos/doctorv4.mp4'
 import NavPat from './NavPat';
+import NavDoc from './NavDoc';
 import Footer from './Footer';
 
-function Blog() {
+function BlogDoc() {
   return (
     <div className='video-div bg-secondary container-fluid'>
-      <NavPat/>
+      <NavDoc/>
       <div class="card border rounded-5 m-5 video">
             <div class="row g-0">
               <div class="col-sm-6">
@@ -88,4 +89,4 @@ function Blog() {
   );
 }
 
-export default Blog;
+export default BlogDoc;

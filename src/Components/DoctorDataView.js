@@ -179,7 +179,7 @@ const DoctorDataView = () => {
                                 </button> */}
 
                                 <button
-                                    className={`btn btn-${clickedButtonId === Doctor.id && Doctor.status ? "success" : "warning"}`}
+                                    className={`btn btn-${clickedButtonId === Doctor.id && Doctor.status ? "warning" : "success"}`}
                                     onClick={() =>
                                         updateDoctors(Doctor.id, {
                                             ...Doctor,
@@ -189,7 +189,7 @@ const DoctorDataView = () => {
                                         })
                                     }
                                 >
-                                    {clickedButtonId === Doctor.id && Doctor.status ? "Active" : "Inactive"}
+                                    {clickedButtonId === Doctor.id && Doctor.status ? "Inactive" : "Active"}
                                 </button>
 
                             </td>
